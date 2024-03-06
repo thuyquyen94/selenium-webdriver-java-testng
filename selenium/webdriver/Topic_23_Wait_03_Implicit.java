@@ -44,9 +44,16 @@ public class Topic_23_Wait_03_Implicit {
 		
 	}
 	@Test
-	public void TC_03_() {
-	
+	public void TC_03_Greater_Than_5_Second() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+
+		driver.get("https://automationfc.github.io/dynamic-loading/");
+
+		driver.findElement(By.cssSelector("div#start>button")).click();
+
+		Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(), "Hello World!");
 	}
+
 	public void sleepInSecond(long timeInSecond) {
 		try {
 			Thread.sleep(timeInSecond * 1000);

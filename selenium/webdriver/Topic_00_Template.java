@@ -10,7 +10,6 @@ import java.time.Duration;
 
 public class Topic_00_Template {
 	WebDriver driver;
-	String osName = System.getProperty("os.name");
 
 	@BeforeClass
 	public void beforeClass() {

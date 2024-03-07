@@ -150,13 +150,6 @@ public class Topic_25_Wait_05_Explicit_01_Knowledge {
 	public void TC_03_() {
 	
 	}
-	public void sleepInSecond(long timeInSecond) {
-		try {
-			Thread.sleep(timeInSecond * 1000);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
-	}
 
 	@AfterClass
 	public void afterClass() {

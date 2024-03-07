@@ -54,14 +54,6 @@ public class Topic_23_Wait_03_Implicit {
 		Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(), "Hello World!");
 	}
 
-	public void sleepInSecond(long timeInSecond) {
-		try {
-			Thread.sleep(timeInSecond * 1000);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
 	@AfterClass
 	public void afterClass() {
 		driver.quit();

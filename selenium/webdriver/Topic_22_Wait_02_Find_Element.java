@@ -74,7 +74,7 @@ public class Topic_22_Wait_02_Find_Element {
 		// Sẽ không chờ hết timeout
 		// Trả về List Element chứa nhiều element
 		// Qua step tiếp theo
-//		System.out.println("Start step: " + getDateTimeNow());
+     //		System.out.println("Start step: " + getDateTimeNow());
 //		driver.findElement(By.cssSelector("input[type='text'],[type='password']")).sendKeys("quyen@gmail.com");
 //		System.out.println("List have: " + elementList.size());
 //		System.out.println("End step: " + getDateTimeNow());

@@ -1,9 +1,22 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="Selenium WebDriver" verbose="1">
+
+    <groups>
+        <run>
+            <include name="customer"/>
+        </run>
+    </groups>
+
     <test name="Xpath Vss">
+        <packages>
+            <package name="categories"></package>
+            <package name="customers"></package>
+            <package name="orders"></package>
+        </packages>
+
         <classes>
-            <class name="testng.Topic_02_Annotations"/>
+            <class name="testng.Topic_03_Assert"/>
         </classes>
     </test>
 </suite>

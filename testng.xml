@@ -1,22 +1,11 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Selenium WebDriver" verbose="1">
+<suite name="Selenium WebDriver" verbose="1" parallel="methods" thread-count="4">
 
-    <groups>
-        <run>
-            <include name="customer"/>
-        </run>
-    </groups>
-
-    <test name="Xpath Vss">
-        <packages>
-            <package name="categories"></package>
-            <package name="customers"></package>
-            <package name="orders"></package>
-        </packages>
-
+    <test name="Run on Firefox Browser">
         <classes>
-            <class name="testng.Topic_03_Assert"/>
+            <class name="testng.Topic_12_Parallel_Method"/>
         </classes>
     </test>
+
 </suite>

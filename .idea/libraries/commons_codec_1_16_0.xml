@@ -2,7 +2,6 @@
   <library name="commons-codec-1.16.0">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libraries/commons-codec-1.16.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../01- Software/selenium 4.0/selenium-server-4.17.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../01- Software/selenium 4.0/testng-7.9.0.jar!/" />
     </CLASSES>
     <JAVADOC />

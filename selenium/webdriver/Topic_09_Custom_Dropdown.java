@@ -15,12 +15,14 @@ import org.testng.annotations.Test;
 
 public class Topic_09_Custom_Dropdown {
 	WebDriver driver;
-	WebDriverWait epliciWait;
+	WebDriverWait explicitWait;
 	String osName = System.getProperty("os.name");
 
 	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
+
+		explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 
@@ -107,7 +109,7 @@ public class Topic_09_Custom_Dropdown {
 		// chờ các item load ra thành công
 		// Locator phải lấy đại diện cho tất cả các item
 		// Lấy thẻ chứa text
-		epliciWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
 		
 		// Đưa hết tất cả item trong dropdown vào 1 List
 		List<WebElement> speedDropdownItems = driver.findElements(By.cssSelector(allItemCss));
@@ -139,7 +141,7 @@ public class Topic_09_Custom_Dropdown {
 		// Locator phải lấy đại diện cho tất cả các item
 		// Lấy thẻ chứa text
 		// Đưa hết tất cả item trong dropdown vào 1 List
-		List<WebElement> speedDropdownItems = epliciWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
+		List<WebElement> speedDropdownItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
 		
 		// Tìm item xem đúng cái đang cần hay không(dùng vòng lặp duyệt qua để tìm)
 		for (WebElement tempItem : speedDropdownItems) {

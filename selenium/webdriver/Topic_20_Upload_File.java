@@ -37,7 +37,7 @@ public class Topic_20_Upload_File {
 	public void TC_01_Single_File() {
 	driver.get("https://blueimp.github.io/jQuery-File-Upload/");
 
-	    // Cùng 1 file đều chạy được trên MAC và Windoư
+	    // Cùng 1 file đều chạy được trên MAC và Window
 		// File này nằm ở đâu -> đưa về đúng thư mục trong project luôn -> nằm trong thư mục uploadfiles
 
 		// Nếu máy khác dùng OS khác có chạy được không?

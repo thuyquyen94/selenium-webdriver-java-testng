@@ -8,10 +8,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.sql.Driver;
 import java.time.Duration;
 
-public class Excercise_02_Web_Browser_Element_1 {
+public class Exercise_02_Web_Browser_Element_1 {
     WebDriver driver;
 
     @BeforeClass
@@ -248,7 +247,6 @@ public class Excercise_02_Web_Browser_Element_1 {
         Assert.assertTrue(driver.findElement(By.cssSelector("li[class='8-char not-completed']")).isDisplayed());
 
         }
-
     @AfterClass
     public void afterClass() {
        // driver.quit();

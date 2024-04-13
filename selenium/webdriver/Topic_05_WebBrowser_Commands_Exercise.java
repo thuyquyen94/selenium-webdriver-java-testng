@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Topic_05_WebBrowser_Commands_Excercise {
+public class Topic_05_WebBrowser_Commands_Exercise {
 	WebDriver driver;
 	String osName = System.getProperty("os.name");
 

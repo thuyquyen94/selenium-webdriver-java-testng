@@ -2,7 +2,10 @@ package javaTester;
 
 import java.util.Random;
 
-public class Topic_05_Random {
+public class Topic_06_Random {
+	// Java Builtin (Cung cấp sẵn - lấy ra sử dụng)
+
+	// Java Libaries ( Do cá nhân, tổ chức họ tự viết)
 
 	public static void main(String[] args) {
 		// Untilities = tiện ích

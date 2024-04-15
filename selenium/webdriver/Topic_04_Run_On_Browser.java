@@ -24,7 +24,7 @@ public class Topic_04_Run_On_Browser {
 	@Test
 	public void TC_01_Run_Chrome() {
 	//chrome
-		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+		System.setProperty("WebDriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 		
 		driver.get("https://demo.nopcommerce.com/");
@@ -34,7 +34,7 @@ public class Topic_04_Run_On_Browser {
 	@Test
 	public void TC_02_Run_FireFox() {
 		//Firefox
-        System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+        System.setProperty("WebDriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
 	    driver = new FirefoxDriver();
 	    
         driver.get("https://demo.nopcommerce.com/");
@@ -44,7 +44,7 @@ public class Topic_04_Run_On_Browser {
 	@Test
 	public void TC_03_Run_Edge() {
 		// Edge
-		 System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
+		 System.setProperty("WebDriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
 		 driver = new EdgeDriver();
 		 
 		 driver.get("https://demo.nopcommerce.com/");

@@ -13,5 +13,6 @@
     <orderEntry type="library" name="selenium-chrome-driver-4.17.0-sources" level="project" />
     <orderEntry type="library" name="testng-7.9.0" level="project" />
     <orderEntry type="library" name="testng-7.9.0-sources" level="project" />
+    <orderEntry type="library" name="selenium-server-4.19.1" level="project" />
   </component>
 </module>

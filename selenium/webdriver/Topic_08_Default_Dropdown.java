@@ -128,6 +128,6 @@ public class Topic_08_Default_Dropdown {
 
 	@AfterClass
 	public void afterClass() {
-		// driver.quit();
+		driver.quit();
 	}
 }

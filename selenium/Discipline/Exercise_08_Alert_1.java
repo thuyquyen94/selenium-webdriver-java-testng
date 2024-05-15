@@ -1,13 +1,13 @@
-package webdriver;
+package Discipline;
 
 import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.v85.network.Network;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -21,43 +21,39 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class Topic_12_Alert {
+public class Exercise_08_Alert_1 {
 	WebDriver driver;
 	WebDriverWait explicitWait;
 
+	By resultText = By.cssSelector("p#result");
 	String projectLocation = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
-	By ResultText = By.cssSelector("p#result");
 	String username = "admin";
 	String password = "admin";
-
 	@BeforeClass
 	public void beforeClass() {
-
-		driver = new ChromeDriver();
-
+		driver = new FirefoxDriver();
 		explicitWait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 
 	@Test
 	public void TC_01_Accept_Alert() {
 	driver.get("https://automationfc.github.io/basic-form/index.html");
-	
+
 	driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
 	sleepInSecond(2);
-	
-	// Chờ cho alert present
-	// Nếu trong thời gian chờ mà xuất hiện thì tự nó switch vào
-	// Nếu hết thời gian chờ mà chưa xuất hiện mới failure
 
 		Alert alert = explicitWait.until(ExpectedConditions.alertIsPresent());
-	    sleepInSecond(2);
+
+	  //  Alert alert = driver.switchTo().alert();
+
+		Assert.assertEquals(alert.getText(),"I am a JS Alert");
 
 		alert.accept();
-		sleepInSecond(3);
-	Assert.assertEquals(driver.findElement(ResultText).getText(), "You clicked an alert successfully");
+		sleepInSecond(2);
 
+		Assert.assertEquals(driver.findElement(resultText).getText(),"You clicked an alert successfully");
 
 	}
 
@@ -70,65 +66,59 @@ public class Topic_12_Alert {
 
 		Alert alert = explicitWait.until(ExpectedConditions.alertIsPresent());
 
-		Assert.assertEquals(alert.getText(), "I am a JS Confirm");
-
+		Assert.assertEquals(alert.getText(),"I am a JS Confirm");
 		alert.dismiss();
-		sleepInSecond(3);
+		sleepInSecond(2);
 
-		Assert.assertEquals(driver.findElement(ResultText).getText(), "You clicked: Cancel");
+		Assert.assertEquals(driver.findElement(resultText).getText(),"You clicked: Cancel");
+
 	}
-
 	@Test
 	public void TC_03_Prompt_Alert() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 
 		driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
 		sleepInSecond(2);
-
 		Alert alert = explicitWait.until(ExpectedConditions.alertIsPresent());
 
-		Assert.assertEquals(alert.getText(), "I am a JS prompt");
+		Assert.assertEquals(alert.getText(),"I am a JS prompt");
 
-		String text = "Selenium WebDriver";
+		String text = "Automation Testing";
 		alert.sendKeys(text);
-		sleepInSecond(2);
 
 		alert.accept();
-		 Assert.assertEquals(driver.findElement(ResultText).getText(), "You entered: " + text);
+		sleepInSecond(2);
+
+		Assert.assertEquals(driver.findElement(resultText).getText(),"You entered: Automation Testing");
 	}
-	
+
 	@Test
-	public void TC_04_Authentication_Alert_Pass_URL() {
+	public void TC_04_Authentication_Alert() {
+		// Cách 1: truyền thẳng user/ pass vào Url
+		// Trick - ByPass
+		// driver.get("http://" + username + ":" + password + "@" + "the-internet.herokuapp.com/basic_auth");
+		// Assert.assertTrue(driver.findElement(
+		//        By.xpath("//p[contains(text(),'Congratulations! You must have the proper credentials.')]")).isDisplayed());
 
-		// tạo 2 biến để khi chỉnh sửa 1 trong 2 dữ liệu sẽ không ảnh hưởng cái kia.
-		// thư viện Alert không sử dụng cho Authentication Alert được, liên quan đến bảo mật
-		// Chrome Dev Tool Protocol (CDP) - Chrome/ Edge (Chromium)
-		// Cách 1: truyền thẳng user/pass vào url
-		driver.get("http://" +username + ":" + password + "@" + "the-internet.herokuapp.com/basic_auth");
-		Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Congratulations! You must have the proper credentials.')]")).isDisplayed());
-
-		// Cách 2: Từ page A thao tác lên 1 element nó sẽ qua page B (cần thao tác Authen Alert trước)
+		// Cách 2: Từ page A thao tác lên 1 element nó sẽ qua page B (cần phải thao tác vs Authen Alert trước)
 		driver.get("http://the-internet.herokuapp.com/");
 
-		String authenlinkUrl = driver.findElement(By.xpath("//a[text()='Basic Auth']")).getAttribute("href");
-     // http://the-internet.herokuapp.com/basic_auth
+		String authenLinkUrl = driver.findElement(By.xpath("//a[text()='Basic Auth']")).getAttribute("href");
 
-		String[] authenArray = authenlinkUrl.split("//");
-		System.out.println(authenArray[0]);
-		System.out.println(authenArray[1]);
+		driver.get(getAuthenAlertByUrl(authenLinkUrl, username, password));
 
-		driver.get(authenArray[0] + "//" + username + ":" + password + "@" + authenArray[1]);
-
-		Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Congratulations! You must have the proper credentials.')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath(
+				"//p[contains(text(),'Congratulations! You must have the proper credentials.')]")).isDisplayed());
 	}
-		@Test
-		public void TC_05_Authentication_Alert_AutoIT() throws IOException {
-    // Cách 2: Chạy trên Window với AutoIT
-    // Thực thi đoạn code autoIT chờ Alert xuất hiện
-			//Runtime.getRuntime().exec(new String[]{ projectLocation +  " \\autoIT\\authen_firefox.exe", "admin", "admin"});
 
-			//driver.get("http://the-internet.herokuapp.com/basic_auth");
-			//sleepInSecond(5);
+	@Test
+	public void TC_05_Authentication_Alert_AutoIT() throws IOException {
+		// Cách 2: Chạy trên Window với AutoIT
+		// Thực thi đoạn code autoIT chờ Alert xuất hiện
+		//Runtime.getRuntime().exec(new String[]{ projectLocation +  " \\autoIT\\authen_firefox.exe", "admin", "admin"});
+
+		//driver.get("http://the-internet.herokuapp.com/basic_auth");
+		//sleepInSecond(5);
 
 		// Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Congratulations! You must have the proper credentials.')]")).isDisplayed());
 	}
@@ -136,7 +126,7 @@ public class Topic_12_Alert {
 	// Thư viện Alert không sử dụng cho Authentication Alert được
 	// Chrome Dev Tool Protocol (CDP) - Chrome/ Edge (Chromium)
 
-	//@Test
+	@Test
 	public void TC_06_Authentication_Alert_Selenium_4x() {
 		// cách 3:
 		// Thư viện Alert không sử dụng cho Authentication Alert được
@@ -164,6 +154,7 @@ public class Topic_12_Alert {
 		driver.get("https://the-internet.herokuapp.com/basic_auth");
 
 	}
+
 	public void sleepInSecond(long timeInSecond) {
 		try {
 			Thread.sleep(timeInSecond * 1000);
@@ -172,6 +163,11 @@ public class Topic_12_Alert {
 		}
 	}
 
+	public String getAuthenAlertByUrl(String url, String username, String password) {
+		String[] authenArray = url.split("//");
+		return authenArray[0] + "//" + username + ":" + password + "@" + authenArray[1];
+	}
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();

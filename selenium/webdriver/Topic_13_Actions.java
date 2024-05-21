@@ -52,7 +52,7 @@ public class Topic_13_Actions {
 
 	}
 
-	//@Test
+	@Test
 	public void TC_02_Hover_Login_Fahasa() {
 	driver.get("https://www.fahasa.com/");
 
@@ -70,7 +70,7 @@ public class Topic_13_Actions {
 	Assert.assertTrue(driver.findElement(By.xpath("//ol[@class='breadcrumb']//strong[text()='Thiết Bị Số - Phụ Kiện Số']")).isDisplayed());
 	}
 
-	//@Test
+	@Test
 	public void TC_03_ClickAndHold() {
     driver.get("https://automationfc.github.io/jquery-selectable/");
 
@@ -94,15 +94,12 @@ public class Topic_13_Actions {
 		allNumberTextExpected.add("1");
 		allNumberTextExpected.add("2");
 		allNumberTextExpected.add("3");
-		allNumberTextExpected.add("4");
 		allNumberTextExpected.add("5");
 		allNumberTextExpected.add("6");
 		allNumberTextExpected.add("7");
-		allNumberTextExpected.add("8");
 		allNumberTextExpected.add("9");
 		allNumberTextExpected.add("10");
 		allNumberTextExpected.add("11");
-		allNumberTextExpected.add("12");
 		allNumberTextExpected.add("13");
 		allNumberTextExpected.add("14");
 		allNumberTextExpected.add("15");
@@ -118,7 +115,7 @@ public class Topic_13_Actions {
 			allNumberTextActual.add(element.getText());
 		}
 
-		Assert.assertEquals(allnumbersSelected, allNumberTextActual);
+		Assert.assertEquals(allNumberTextExpected, allNumberTextActual);
 
 
 	}
@@ -174,7 +171,7 @@ WebElement doubleClickButton = driver.findElement(By.xpath("//button[text()='Dou
 
 	@Test
 	public void TC_06_RightClick() {
-driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
+ driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
 
 // Chưa click chuột phải thì nó đang không hiển thị (invisible)
 		Assert.assertFalse(driver.findElement(By.cssSelector("li.context-menu-icon-paste")).isDisplayed());

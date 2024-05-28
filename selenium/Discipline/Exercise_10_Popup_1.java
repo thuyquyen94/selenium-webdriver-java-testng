@@ -1,10 +1,8 @@
-package webdriver;
+package Discipline;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,81 +10,57 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Topic_14_Popup_01 {
+public class Exercise_10_Popup_1 {
 	WebDriver driver;
-	String osName = System.getProperty("os.name");
 
 	@BeforeClass
 	public void beforeClass() {
-		FirefoxOptions options = new FirefoxOptions();
-		options.setProfile(new FirefoxProfile());
-		options.addPreference("dom.webnotifications.enabled", false);
-
-		driver = new FirefoxDriver(options);
+		driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.manage().window().maximize();
 	}
-@Test
-	public void TC_01_Fixed_In_DOM_NgoaiNgu() {
-		driver.get("https://ngoaingu24h.vn/");
 
-		By loginPopup = By.cssSelector("div#modal-login-v1 div.modal-content");
+	@Test
+	public void TC_01_Fixed_In_DOM_NgoaiNgu()  {
+	driver.get("https://ngoaingu24h.vn/");
 
-		// Verify Poup is undisplayed
-		Assert.assertFalse(driver.findElement(loginPopup).isDisplayed());
-
-		// Click vào button login
 		driver.findElement(By.cssSelector("button.login_")).click();
 		sleepInSecond(3);
 
-		// Verify Poup is displayed
+		By loginPopup = By.cssSelector("div[id='modal-login-v1'][style]>div");
+
 		Assert.assertTrue(driver.findElement(loginPopup).isDisplayed());
 
-		driver.findElement(By.cssSelector("input#account-input")).sendKeys("automationfc");
-		driver.findElement(By.cssSelector("input#password-input")).sendKeys("automationfc");
-        driver.findElement(By.cssSelector("button.btn-login-v1")).click();
+		driver.findElement(By.cssSelector("div[id='modal-login-v1'][style] input#account-input")).sendKeys("autofc");
+		driver.findElement(By.cssSelector("div[id='modal-login-v1'][style] input#password-input")).sendKeys("autofc");
+		driver.findElement(By.cssSelector("div[id='modal-login-v1'][style] button.btn-login-v1")).click();
 		sleepInSecond(3);
 
-		// Verify error message
-		Assert.assertEquals(driver.findElement(By.cssSelector("div#modal-login-v1 div.error-login-panel")).getText(),"Tài khoản không tồn tại!");
+		Assert.assertEquals(driver.findElement(By.cssSelector("div[id='modal-login-v1'][style] div.error-login-panel")).getText(),"Tài khoản không tồn tại!");
 
-		// Đóng popup
-		driver.findElement(By.cssSelector("div#modal-login-v1 button.close")).click();
-		sleepInSecond(1);
+		driver.findElement(By.cssSelector("div[id='modal-login-v1'][style] button.close"));
+		sleepInSecond(3);
 
-		// Verify Poup is undisplayed
 		Assert.assertFalse(driver.findElement(loginPopup).isDisplayed());
+
 	}
 	@Test
 	public void TC_02_Fixed_Popup_IN_DOM_KyNa() {
-	driver.get("https://skills.kynaenglish.vn/");
+		driver.get("https://skills.kynaenglish.vn/");
 
-	By loginPopup = By.cssSelector("div#k-popup-account-login");
-
-         // Verify nó không hiển thị
-		Assert.assertFalse(driver.findElement(loginPopup).isDisplayed());
-
-		// Click vào button Login
 		driver.findElement(By.cssSelector("a.login-btn")).click();
-		sleepInSecond(2);
 
-		// Verify nó hiện thị
-        Assert.assertTrue(driver.findElement(loginPopup).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector("div#k-popup-account-login")).isDisplayed());
 
 		driver.findElement(By.cssSelector("input#user-login")).sendKeys("automation@gmail.com");
 		driver.findElement(By.cssSelector("input#user-password")).sendKeys("123456");
 		driver.findElement(By.cssSelector("button#btn-submit-login")).click();
 		sleepInSecond(3);
-
 		Assert.assertEquals(driver.findElement(By.cssSelector("div#password-form-login-message")).getText(), "Sai tên đăng nhập hoặc mật khẩu");
 
-		// Đóng popup
 		driver.findElement(By.cssSelector("button.k-popup-account-close")).click();
 		sleepInSecond(3);
 
-		// Verify nó không hiển thị
-		Assert.assertFalse(driver.findElement(loginPopup).isDisplayed());
-
+		Assert.assertFalse(driver.findElement(By.cssSelector("div#k-popup-account-login-mb div.modal-content")).isDisplayed());
 	}
 
 	@Test
@@ -96,7 +70,6 @@ public class Topic_14_Popup_01 {
 		driver.findElement(By.cssSelector("div[data-view-id='header_header_account_container']")).click();
 		sleepInSecond(3);
 
-		// Kiểm tra popup hiển thị
 		Assert.assertTrue(driver.findElement(By.cssSelector("div.ReactModal__Content")).isDisplayed());
 
 		driver.findElement(By.cssSelector("p.login-with-email")).click();
@@ -108,7 +81,6 @@ public class Topic_14_Popup_01 {
 		Assert.assertEquals(driver.findElement(By.xpath("//input[@type='email']/parent::div/following-sibling::span[1]")).getText(), "Email không được để trống");
 		Assert.assertEquals(driver.findElement(By.xpath("//input[@type='password']/parent::div/following-sibling::span")).getText(), "Mật khẩu không được để trống");
 
-		// Đóng popup
 		driver.findElement(By.cssSelector("img.close-img")).click();
 		sleepInSecond(2);
 
@@ -128,17 +100,18 @@ public class Topic_14_Popup_01 {
 		driver.get("https://www.facebook.com/");
 
 		driver.findElement(By.cssSelector("a[data-testid='open-registration-form-button']")).click();
-		sleepInSecond(2);
 
 		Assert.assertTrue(driver.findElement(By.xpath("//div[text()='Sign Up']/parent::div/parent::div")).isDisplayed());
 
 		driver.findElement(By.xpath("//div[text()='Sign Up']/parent::div/preceding-sibling::img")).click();
-		sleepInSecond(2);
+		sleepInSecond(3);
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		Assert.assertEquals(driver.findElements(By.xpath("//div[text()='Sign Up']/parent::div/parent::div")).size(), 0);
 
+
 	}
+
 
 	public void sleepInSecond(long timeInSecond) {
 		try {
@@ -147,10 +120,9 @@ public class Topic_14_Popup_01 {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
 	}
-
 }

@@ -2,11 +2,14 @@ package webdriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.locators.RelativeLocator;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.sql.Driver;
 import java.time.Duration;
 
 public class Topic_02_Selenium_Locator {
@@ -58,19 +61,27 @@ public class Topic_02_Selenium_Locator {
 
     @Test
     public void TC_04_TagName() {
-        // Tìm ra bao nhiêu thẻ input trên màn hình hiện tại
+        // Tên thẻ của HTML
+        // Tìm tất cả các element giống nhau ( thẻ của component giống nhau)
+        // Tất cả các textbox/checkbox/radio/link/button...
+
         System.out.println(driver.findElements(By.tagName("input")).size());
 
     }
     @Test
     public void TC_05_LinkText() {
         // Click vào đường link Addresses chuyền vào text tuyệt đối, chứa toàn bộ
+        // Chỉ làm việc với element là link và có text
+        // Thẻ a và có thuộc tính href
+        // Phải lấy hết toàn bộ text không chừa cái nào hết ( lấy tuyệt đối)
         driver.findElement(By.linkText("Addresses")).click();
     }
 
     @Test
     public void TC_06_PartialLinkText() {
         // Click vào đường link Apply for vendor chuyền vào tương đối, không cần bắt buộc chuyển hết vào chuỗi, sẽ chạy chậm hơn
+        // Chỉ làm việc với element là link
+        // Có thể lấy toàn bộ text hoặc 1 phần( hay dùng)
         driver.findElement(By.partialLinkText("vendor account")).click();
     }
 
@@ -103,6 +114,40 @@ public class Topic_02_Selenium_Locator {
         // 3
         driver.findElement(By.xpath("//label[text()='Email:']/following-sibling::input")).sendKeys("automation@mail.com");
     }
+
+    @Test
+    public void TC_09_Relate_Locator(){
+        driver.get("https://demo.nopcommerce.com/login");
+        // Element/ By A
+        By passwordTextboxBy = By.cssSelector("input#Password");
+
+        WebElement passwordTextbox = driver.findElement(By.cssSelector("input#Password"));
+
+        // Element/ By B
+        By remmemberMyCheckboxBy = By.cssSelector("input#RememberMe");
+
+        // Element/ By C
+        By forgotPasswordLinkBy = By.cssSelector("span.forgot-password");
+
+        // Element/ By D
+        By loginButtonBy = By.cssSelector("button.login-button");
+
+        // Element/ By E
+        // Phần biệt trên giao diện, trên UI
+        WebElement rememberMeLabelText = driver.findElement(RelativeLocator.with(By.tagName("label"))
+                .above(loginButtonBy)  // Label đang nằm trên Login button
+                .below(passwordTextbox) // Label nằm dưới password Textbox
+                .toRightOf(remmemberMyCheckboxBy) // Label nằm bên phải so với RememberMe Checkbox
+                .toLeftOf(forgotPasswordLinkBy) // Label nằm bên trái so với Password Link
+        );
+        // Ít sử dụng trong thực tế
+        // 1- Được sử dụng khi không thể định danh Element của chính nó (dựa vào những vị trí bên cạnh/ gần đó)
+        // 2- Sử dụng để test GUI (giao diện - position khớp với Design)
+
+
+    }
+
+
     public void sleepInSecond(long timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);

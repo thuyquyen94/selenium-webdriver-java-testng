@@ -34,7 +34,7 @@ public class Topic_05_WebBrowser_Commands_01 {
         driver = new SafariDriver();*/
 
             // Selenium ver 3/2/1 (Deprecated)
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            // driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
             // Selenium ver 4
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));// **

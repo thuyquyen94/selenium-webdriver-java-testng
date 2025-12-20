@@ -8,16 +8,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.bouncycastle.oer.its.template.ieee1609dot2.basetypes.Ieee1609Dot2BaseTypes.Duration;
-
 public class Topic_05_WebBrowser_Commands_Exercise {
 	WebDriver driver;
 
 	@BeforeClass
-	public void beforeClass() {
+	public void initialBrowser() {
 		driver = new FirefoxDriver();
-
-		// driver.manage().timeouts().implicitlyWait(Duration.inScope(30));
 	}
 
 	@Test
@@ -27,13 +23,12 @@ public class Topic_05_WebBrowser_Commands_Exercise {
 	// Click vào My Account
 	driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
 
-	
+	// Lấy ra URL của page hiện tại
 	driver.getCurrentUrl();
 	Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/login/");
 	
 	// Click vào Create an account
 	driver.findElement(By.cssSelector("a[title='Create an Account']")).click();
-
 	Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/create/");
 	
 	}
@@ -45,13 +40,11 @@ public class Topic_05_WebBrowser_Commands_Exercise {
 		// Click vào My Account
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
 
-		
 		driver.getCurrentUrl();
 		Assert.assertEquals(driver.getTitle(), "Customer Login");
 		
 		// Click vào Create an account
 		driver.findElement(By.cssSelector("a[title='Create an Account']")).click();
-
 		Assert.assertEquals(driver.getTitle(), "Create New Customer Account");
 	}
 
@@ -61,20 +54,16 @@ public class Topic_05_WebBrowser_Commands_Exercise {
 		
 		// Click vào My Account
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
-
 		
 		// Click vào Create an account
 		driver.findElement(By.cssSelector("a[title='Create an Account']")).click();
 
-	    
 		// Back lại
 		driver.navigate().back();
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/login/");
 
-		Assert.assertEquals(driver.getTitle(), "Customer Login");
-		
 		// Forward
 		driver.navigate().forward();
-
 		Assert.assertEquals(driver.getTitle(), "Create New Customer Account");
 	}
 
@@ -84,16 +73,16 @@ public class Topic_05_WebBrowser_Commands_Exercise {
 		
 		// Click vào My Account
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
-		
+
 		// verify page HTML có chứa 1 chuỗi mong muốn không?
-		//Assert.assertTrue(driver.getPageSource().contains("Login or Create an Account"));
+		// Vì hàm contains trả về kiểu boolean. AssertTrue trả về kiểu boolean
+		Assert.assertTrue(driver.getPageSource().contains("Login or Create an Account"));
 		
 		// Click vào Create an account
 		driver.findElement(By.cssSelector("a[title='Create an Account']")).click();
 
-		
 		// verify page HTML có chứa 1 chuỗi mong muốn không?
-	    //Assert.assertTrue(driver.getPageSource().contains("Create an Account"));
+	    Assert.assertTrue(driver.getPageSource().contains("Create an Account"));
 		
 	}
 

@@ -1,8 +1,25 @@
 package testng;
 
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class Topic_02_Annotations {
+    public  static void main(String[]arg){
+        // 3 hàm chính để kiểm tra tính đúng đắn của dữ liệu
+        boolean gender = 3>5;
+
+        // Kiểm tra dữ liệu nó phải ĐÚNG
+        Assert.assertTrue(gender);
+
+        // Kiểm tra dữ liệu nó phải SAI
+        Assert.assertFalse(3>5);
+
+        // Kiểm tra dữ liệu nó bằng với mong đợi
+        // Kiểm tra dữ liệu giống nhau
+        // Giá trị của dữ liệu bằng nhau
+        Assert.assertEquals(5,6);
+
+    }
     // 1 Annotations bắt buộc phải gán vào 1 hàm nào đó
 
     @BeforeClass

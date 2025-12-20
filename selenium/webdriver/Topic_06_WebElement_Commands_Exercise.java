@@ -13,7 +13,7 @@ public class Topic_06_WebElement_Commands_Exercise {
 	WebDriver driver;
 
 	@BeforeClass
-	public void beforeClass() {
+	public void initialBrowser() {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
@@ -94,7 +94,7 @@ public class Topic_06_WebElement_Commands_Exercise {
 	}
 
 	@Test
-	public void TC_04_MailChimp() {
+	public void TC_04_MailChimp_Register_Validate() {
 		driver.get("https://login.mailchimp.com/signup/");
 
 		driver.findElement(By.cssSelector("input#email")).sendKeys("automationfc@gmail.com");

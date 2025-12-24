@@ -1,5 +1,7 @@
 package javaSDET;
 
+import org.testng.reporters.jq.Main;
+
 public class Topic_02_And_Or {
 
 	public static void main(String[] args) {

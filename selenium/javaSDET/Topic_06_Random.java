@@ -1,24 +1,28 @@
 package javaSDET;
 
+import org.testng.annotations.Test;
+import zmq.socket.pubsub.Pub;
+
 import java.util.Random;
 
 public class Topic_06_Random {
-	// Java Builtin (Cung cấp sẵn - lấy ra sử dụng)
+	// Global
+	String prefixEmail = "Automation";
 
-	// Java Libaries ( Do cá nhân, tổ chức họ tự viết)
+	String postFixEmail = "@gmail.com";
 
-	public static void main(String[] args) {
-		// Untilities = tiện ích
-		
-		// DaTa Type: Class/ Interface/ String/Map...
+	@Test
+	public void testEmail(){
 		Random rand = new Random();
-		System.out.println(rand.nextFloat());
-		System.out.println(rand.nextDouble());
-		System.out.println(rand.nextFloat());
-		System.out.println("Automation" + rand.nextInt(9999) + "@gmail.net");
-		System.out.println(rand.nextLong());
-		
-		// quyen7621882639402950526@gmail.com
+		// khai báo trong hàm gọi là biến Local
+		// String fullEmail = prefixEmail + rand.nextInt(99999) + postFixEmail;
+
+		System.out.printf(prefixEmail + rand.nextInt(99999) + postFixEmail);
+		System.out.printf(prefixEmail + rand.nextInt(99999) + postFixEmail);
+		System.out.printf(prefixEmail + rand.nextInt(99999) + postFixEmail);
+		System.out.printf(prefixEmail + rand.nextInt(99999) + postFixEmail);
+		System.out.printf(prefixEmail + rand.nextInt(99999) + postFixEmail);
+
 	}
 
 }

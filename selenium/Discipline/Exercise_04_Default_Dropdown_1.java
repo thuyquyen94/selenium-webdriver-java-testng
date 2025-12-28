@@ -92,7 +92,7 @@ public class Exercise_04_Default_Dropdown_1 {
 	
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		//driver.quit();
 	}
 	public String getEmailAddress(){
 		Random rad = new Random();

@@ -27,7 +27,14 @@ public class Topic_00_Example {
 
     }
 
-    // 3- Clean: Delete data test/ account/ close browser...
+
+    public void sleepInSecond(long timeInSecond) {
+        try {
+            Thread.sleep(timeInSecond * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @AfterClass
     public void cleanBrowser(){
         driver.quit();

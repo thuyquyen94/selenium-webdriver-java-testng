@@ -26,6 +26,15 @@ public class Exercise_00_Example {
 
     }
 
+
+    public void sleepInSecond(long timeInSecond) {
+        try {
+            Thread.sleep(timeInSecond * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @AfterClass
     public void cleanBrowser(){
         driver.quit();

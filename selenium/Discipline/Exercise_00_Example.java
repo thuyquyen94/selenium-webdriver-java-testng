@@ -7,14 +7,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Exercise_00_Example {
-
-    // 1- Set up : OS/ Browser/ Web/ Page/ Data/ Variable/ Object...
     WebDriver driver;
 
     @BeforeClass
     public void initialBrowser(){
         driver = new FirefoxDriver();
-        driver.get("https://demo.nopcommerce.com");
+        driver.manage().window().maximize();
     }
 
     @Test

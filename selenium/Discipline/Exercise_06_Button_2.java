@@ -49,7 +49,8 @@ public class Exercise_06_Button_2 {
 
 		Assert.assertTrue(driver.findElement(loginButton).isEnabled());
 
-		Assert.assertEquals(Color.fromString(driver.findElement(loginButton).getCssValue("background-color")).asHex().toUpperCase(), "#C92127");
+		Assert.assertEquals(Color.fromString(driver.findElement(loginButton).getCssValue("background-color"))
+				.asHex().toUpperCase(), "#C92127");
 
 		driver.findElement(loginButton).click();
 		Assert.assertEquals(driver.findElement(By.cssSelector("div.fhs-login-msg")).getText(),"Số điện thoại/Email hoặc Mật khẩu sai!");

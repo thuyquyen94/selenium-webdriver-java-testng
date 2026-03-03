@@ -6,6 +6,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class Exercise_00_Example {
     WebDriver driver;
 
@@ -13,6 +15,7 @@ public class Exercise_00_Example {
     public void initialBrowser(){
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
     @Test
